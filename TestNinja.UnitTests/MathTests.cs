@@ -15,6 +15,7 @@ namespace TestNinja.UnitTests
         //SetUp
         //TearDown
 
+        [SetUp]
         public void SetUp()
         {
             _math = new Math(); 
@@ -30,7 +31,7 @@ namespace TestNinja.UnitTests
 
         [Test]
         [TestCase(2, 1, 2)]
-        [TestCase(1, 1, 2)]
+        [TestCase(1, 2, 2)]
         [TestCase(1, 1, 1)]
         public void Max_WhenCalled_ReturnTheGreaterArgument(int a, int b, int expectedResult)
         {
