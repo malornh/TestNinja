@@ -1,8 +1,4 @@
 ﻿using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestNinja.Fundamentals;
 
 namespace TestNinja.UnitTests
@@ -18,7 +14,7 @@ namespace TestNinja.UnitTests
         [SetUp]
         public void SetUp()
         {
-            _math = new Math(); 
+            _math = new Math();
         }
 
         [Test]
