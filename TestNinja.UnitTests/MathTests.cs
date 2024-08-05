@@ -40,5 +40,15 @@ namespace TestNinja.UnitTests
 
             Assert.That(result, Is.EqualTo(expectedResult));
         }
+
+        [Test]
+        public void GetOddNumbers_LimitIsGreaterThanZero_ReturnOddNumbersUpToTheLimit()
+        {
+            var result = _math.GetOddNumbers(5);
+
+            Assert.That(result, Is.EquivalentTo(new[] { 1, 3, 5 }));
+            Assert.That(result, Is.Ordered);
+            Assert.That(result, Is.Unique);
+        }
     }
 }
