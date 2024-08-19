@@ -81,6 +81,19 @@ namespace TestNinja.UnitTests.Mocking
             VerifyEmailSent();
         }
 
+        [Test]
+        [TestCase(null)]
+        [TestCase(" ")]
+        [TestCase("")]
+        public void SendStatementEmails_StatementFileNameIsNotCorrect_ShouldNotEmailTheStatement(string fileName)
+        {
+            _statementFileName = fileName;
+
+            _service.SendStatementEmails(_Statementdate);
+
+            VerifyEmailNotSent();
+        }
+
         private void VerifyMessageBoxDisplayed()
         {
             _messageBox.Verify(b => b.Show(It.IsAny<string>(), It.IsAny<string>(), MessageBoxButtons.OK));
