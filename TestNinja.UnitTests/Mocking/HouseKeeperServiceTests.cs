@@ -69,6 +69,18 @@ namespace TestNinja.UnitTests.Mocking
                 Times.Never);
         }
 
+        [Test]
+        public void SendStatementEmails_WhenCalled_EmailStatement()
+        {
+            _statementGenerator
+                .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _Statementdate)
+                ).Returns(_statementFileName);
+
+            _service.SendStatementEmails(_Statementdate);
+
+            VerifyEmailSent();
+        }
+
         private void VerifyMessageBoxDisplayed()
         {
             _messageBox.Verify(b => b.Show(It.IsAny<string>(), It.IsAny<string>(), MessageBoxButtons.OK));
