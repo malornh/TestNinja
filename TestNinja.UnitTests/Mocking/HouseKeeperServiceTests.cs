@@ -55,6 +55,20 @@ namespace TestNinja.UnitTests.Mocking
             _statementGenerator.Verify(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _Statementdate));
         }
 
+        [Test]
+        [TestCase(null)]
+        [TestCase(" ")]
+        [TestCase("")]
+        public void SendStatementEmails_HousekeepersEmailIsIncorrect_ShouldNotGenerateStatements(string email)
+        {
+            _houseKeeper.Email = email;
+
+            _service.SendStatementEmails(_Statementdate);
+
+            _statementGenerator.Verify(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _Statementdate),
+                Times.Never);
+        }
+
         private void VerifyMessageBoxDisplayed()
         {
             _messageBox.Verify(b => b.Show(It.IsAny<string>(), It.IsAny<string>(), MessageBoxButtons.OK));
